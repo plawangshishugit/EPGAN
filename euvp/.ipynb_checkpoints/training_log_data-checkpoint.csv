@@ -1,0 +1,1 @@
+timestamp,epoch,train_g_loss,train_c_loss,train_a_loss,train_p_loss,train_e_loss,train_d_loss,train_psnr,train_psnr_std,train_ssim,train_ssim_std,test_psnr,test_psnr_std,test_ssim,test_ssim_std,edge_iou,edge_f1,best_psnr,learning_rate_g,learning_rate_d,batch_size,lambda_content,lambda_adversarial,lambda_perceptual,lambda_edge,runtime_sec,gpu_memory_mb

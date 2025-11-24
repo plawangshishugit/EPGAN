@@ -1,44 +1,143 @@
-##  Datasets
+## 🚀 How to Run
 
-### **EUVP (Enhancing Underwater Visual Perception) Dataset**
+### **1. Install Dependencies**
 
-**Source:** [EUVP Dataset](https://irvlab.cs.umn.edu/resources/euvp-dataset)
+Your code requires the following libraries:
 
-**Description:**
-The EUVP dataset contains both **paired** and **unpaired** underwater image sets categorized into *poor perceptual quality* and *good perceptual quality*. It is designed for training and evaluating supervised and unsupervised underwater image enhancement models.
+```
+pip install torch torchvision torchmetrics scikit-image tqdm pillow matplotlib numpy scikit-learn torchsummary seaborn pandas
+```
 
-**Details:**
-
-* **Paired Data:** Consists of three subsets: *Underwater Dark*, *Underwater ImageNet*, and *Underwater Scenes* (e.g., 5,550 + 570 total images in the Underwater Dark subset).
-* **Unpaired Data:** Includes poor-quality, good-quality, and validation sets (3,195 poor + 3,140 good + 330 validation = 6,665 images).
-* **Usage:** Suitable for paired supervised learning and unpaired GAN-based enhancement.
-* **License / Note:** Check the official dataset page for usage terms. Dataset is intended for research purposes only.
-* **Ownership:** *I do not own this dataset. All rights belong to the original authors.*
+✅ CUDA is automatically detected in your script
+✅ No additional configuration required
 
 ---
 
-### **UIEB (Underwater Image Enhancement Benchmark) Dataset**
+### **2. Dataset Setup (No Files Included)**
 
-**Source:** [UIEB Dataset – “An Underwater Image Enhancement Benchmark Dataset and Beyond”](https://li-chongyi.github.io/proj_benchmark.html)
+This repository **does not contain any dataset files**.
 
-**Description:**
-UIEB is a large-scale real-world underwater image enhancement benchmark containing **950 underwater images**. Out of these, **890 images** have high-quality reference ground truths, while **60 are challenging images** without reference images.
+Download datasets only from official sources:
 
-**Details:**
+* **EUVP (paired subset only):**
+  [https://irvlab.cs.umn.edu/resources/euvp-dataset](https://irvlab.cs.umn.edu/resources/euvp-dataset)
 
-* **890 raw underwater images** (~630 MB) along with **their reference images** (~786 MB).
-* **60 challenging images** without reference ground truth.
-* **Usage:** Commonly used for benchmarking, quantitative evaluation (PSNR, SSIM), and comparison against state-of-the-art underwater enhancement techniques.
-* **License / Note:** The dataset is intended solely for academic use; redistribution is not permitted.
-* **Ownership:** *I do not own this dataset. All rights belong to the authors of the UIEB benchmark.*
+* **UIEB Benchmark (evaluation only):**
+  [https://li-chongyi.github.io/proj_benchmark.html](https://li-chongyi.github.io/proj_benchmark.html)
+
+#### Folder structure expected by the code:
+
+```
+/EUVP/Paired/
+   underwater_dark/
+      trainA/
+      trainB/
+   underwater_imagenet/
+      trainA/
+      trainB/
+   underwater_scenes/
+      trainA/
+      trainB/
+```
+
+Update the dataset path in your code here:
+
+```python
+dataset = EUVPDataset(
+    r'C:\Users\plawa\anaconda3\envs\underwater_gan_new\EUVP\Paired',
+    transform=transform
+)
+
+### **3. Run Training**
+
+Your script already contains the full training loop:
+
+```
+python your_script_name.py
+```
+
+It will automatically:
+
+✔ split the dataset into train/test
+✔ train the generator & discriminator
+✔ log metrics to `training_log.csv`
+✔ save best models as:
+
+```
+generator_best.pth
+discriminator_best.pth
+```
+
+✔ generate visual outputs like:
+
+```
+test_results.png
+edge_analysis_paper_ready_with_metrics.png
+col1_gan_loss_curve.png
+```
 
 ---
 
-## ⚠️ **Copyright Disclaimer**
+## ✅ Reproduction Steps
 
-This project **does not claim any ownership** of the EUVP or UIEB datasets.
-All datasets referenced here are the intellectual property of their respective creators.
-Links are provided **only for academic citation and reproducibility**.
-Users must comply with the **original dataset licenses and usage terms** when downloading or using these datasets.
+To reproduce reported results:
+
+1. Download EUVP paired dataset from the official link
+2. Place it under `/EUVP/Paired/` as shown above
+3. Install requirements
+4. Run the script
+5. The code will automatically:
+
+   * compute PSNR & SSIM per epoch
+   * save best checkpoint
+   * evaluate on test split
+   * generate publication-ready figures
+6. Final metrics will print at the end:
+
+```
+PSNR: XX.XX ± XX.XX
+SSIM: 0.9XXX ± 0.0XXX
+```
 
 ---
+
+## 🔗 Dataset Access (No Redistribution)
+
+This project **does not redistribute** any dataset.
+
+Users must download datasets directly from:
+
+* EUVP Dataset — official source only
+* UIEB Benchmark — official source only
+
+All rights remain with the original dataset authors.
+
+---
+
+## 📌 Citation
+
+If using this code, please cite:
+
+```
+[YOUR PAPER TITLE]
+[Author Names]
+Submitted to *The Visual Computer*, Springer Nature, 2025.
+Code DOI: [insert Zenodo DOI]
+```
+
+GitHub description should include:
+
+> Code accompanying the article
+> *[YOUR PAPER TITLE]* — submitted to **The Visual Computer**
+> DOI: [Zenodo DOI]
+
+---
+
+## 📄 License
+
+This project’s source code is released under:
+
+```
+MIT License
+Copyright (c) 2025 [Plawang Shishu]
+```

@@ -40,6 +40,15 @@ Download datasets only from official sources:
       trainB/
 ```
 
+✅ **Only `trainA` (distorted images) and `trainB` (reference images) are used in this project.**
+✅ No validation or test folders from the original dataset are used.
+
+The dataset is internally divided into an **80/20 split** for training and testing using:
+
+```python
+train_indices, test_indices = train_test_split(indices, test_size=0.2, random_state=42)
+```
+
 Update the dataset path in your code here:
 
 ```python
@@ -47,18 +56,25 @@ dataset = EUVPDataset(
     r'C:\Users\plawa\anaconda3\envs\underwater_gan_new\EUVP\Paired',
     transform=transform
 )
-````
+```
+
+---
+
 ### **3. Run Training**
 
 Your script already contains the full training loop:
 
 ```
-python your_script_name.py
+python euvpcode.py
+```
+or 
+```
+python uiebcode.py
 ```
 
 It will automatically:
 
-✔ split the dataset into train/test
+✔ split the dataset into **80% training / 20% testing**
 ✔ train the generator & discriminator
 ✔ log metrics to `training_log.csv`
 ✔ save best models as:
@@ -82,21 +98,26 @@ col1_gan_loss_curve.png
 
 To reproduce reported results:
 
-1. Download EUVP paired dataset from the official link
-2. Place it under `/EUVP/Paired/` as shown above
+1. Download the EUVP paired dataset from the official link
+
+2. Place only the `trainA` and `trainB` folders under `/EUVP/Paired/`
+
 3. Install requirements
+
 4. Run the script
+
 5. The code will automatically:
 
    * compute PSNR & SSIM per epoch
-   * save best checkpoint
-   * evaluate on test split
+   * save the best checkpoint
+   * evaluate on the 20% test split
    * generate publication-ready figures
-6. Final metrics will print at the end:
+
+6. Final metrics will print at the end, for example:
 
 ```
 PSNR: XX.XX ± XX.XX
-SSIM: 0.9XXX ± 0.0XXX
+SSIM: 0.XXXX ± 0.XXXX
 ```
 
 ---
@@ -109,5 +130,7 @@ Users must download datasets directly from:
 
 * EUVP Dataset — official source only
 * UIEB Benchmark — official source only
+
+Only officially downloaded **trainA and trainB** images were used, and solely for training/testing within an 80/20 split.
 
 All rights remain with the original dataset authors.

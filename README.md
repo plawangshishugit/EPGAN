@@ -134,3 +134,9 @@ Users must download datasets directly from:
 Only officially downloaded **trainA and trainB** images were used, and solely for training/testing within an 80/20 split.
 
 All rights remain with the original dataset authors.
+
+---
+
+The full source code is publicly available at **[https://doi.org/10.5281/zenodo.17699826](https://doi.org/10.5281/zenodo.17699826)**.
+
+---

@@ -22,7 +22,7 @@ Download datasets only from official sources:
 * **EUVP (paired subset only):**
   [https://irvlab.cs.umn.edu/resources/euvp-dataset](https://irvlab.cs.umn.edu/resources/euvp-dataset)
 
-* **UIEB Benchmark (evaluation only):**
+* **UIEB Benchmark (Raws and References only):**
   [https://li-chongyi.github.io/proj_benchmark.html](https://li-chongyi.github.io/proj_benchmark.html)
 
 #### Folder structure expected by the code:
@@ -47,7 +47,7 @@ dataset = EUVPDataset(
     r'C:\Users\plawa\anaconda3\envs\underwater_gan_new\EUVP\Paired',
     transform=transform
 )
-
+````
 ### **3. Run Training**
 
 Your script already contains the full training loop:
@@ -111,33 +111,3 @@ Users must download datasets directly from:
 * UIEB Benchmark — official source only
 
 All rights remain with the original dataset authors.
-
----
-
-## 📌 Citation
-
-If using this code, please cite:
-
-```
-[YOUR PAPER TITLE]
-[Author Names]
-Submitted to *The Visual Computer*, Springer Nature, 2025.
-Code DOI: [insert Zenodo DOI]
-```
-
-GitHub description should include:
-
-> Code accompanying the article
-> *[YOUR PAPER TITLE]* — submitted to **The Visual Computer**
-> DOI: [Zenodo DOI]
-
----
-
-## 📄 License
-
-This project’s source code is released under:
-
-```
-MIT License
-Copyright (c) 2025 [Plawang Shishu]
-```

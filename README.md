@@ -1,5 +1,5 @@
 
-# 📘 EP-GAN: Edge-Preserving Generative Adversarial Network for Underwater Image Restoration
+#  EP-GAN: Edge-Preserving Generative Adversarial Network for Underwater Image Restoration
 
 This repository contains the official implementation of **EP-GAN**, an edge-preserving generative adversarial network designed to restore underwater images by enhancing color, contrast, structural details, and edge fidelity.
 The model integrates global perceptual learning with local edge-aware guidance for high-quality underwater image restoration.
@@ -8,15 +8,15 @@ The complete implementation and training code are publicly available under the D
 
 ---
 
-## 🔗 **Code Availability**
+##  **Code Availability**
 
 The full source code is archived at:
 
-👉 **[https://doi.org/10.5281/zenodo.17649194](https://doi.org/10.5281/zenodo.17649194)**
+ **[https://doi.org/10.5281/zenodo.17649194](https://doi.org/10.5281/zenodo.17649194)**
 
 ---
 
-# 📁 Repository Structure
+# Repository Structure
 
 ```
 EPGAN/
@@ -35,7 +35,7 @@ EPGAN/
 
 ---
 
-# 🚀 How to Run
+# How to Run
 
 ### **1. Install Dependencies**
 
@@ -63,7 +63,7 @@ All datasets must be downloaded from official sources.
 
 ---
 
-## 📂 Folder Structure Required
+## Folder Structure Required
 
 ```
 /EUVP/Paired/
@@ -90,7 +90,7 @@ All datasets must be downloaded from official sources.
 
 ---
 
-# 🧠 Training Strategy (IMPORTANT)
+# Training Strategy
 
 We designed the EP-GAN architecture and trained it **separately on two different datasets**:
 
@@ -116,7 +116,7 @@ This ensures unbiased, dataset-specific performance evaluation.
 
 ---
 
-# 🧑‍💻 Training
+# Training
 
 Run:
 
@@ -152,7 +152,7 @@ col1_gan_loss_curve.png
 
 ---
 
-# 🧪 Testing / Evaluation
+# Testing / Evaluation
 
 Run:
 
@@ -169,7 +169,7 @@ Outputs include:
 
 ---
 
-# 🔁 Reproduction Steps
+# Reproduction Steps
 
 1. Install dependencies
 2. Download EUVP or UIEB from official sites
@@ -195,7 +195,7 @@ SSIM: 0.9XXX ± 0.0XXX
 
 ---
 
-# 📂 Dataset Access (Ethical Compliance)
+# Dataset Access
 
 This project **does not include or redistribute** any dataset.
 
@@ -208,7 +208,7 @@ All rights remain with their respective creators.
 
 ---
 
-# 📝 Citation
+# Citation
 
 If you use this code, model, or datasets, please cite:
 
@@ -217,7 +217,7 @@ If you use this code, model, or datasets, please cite:
 
 ---
 
-# 🔖 BibTeX
+# BibTeX
 
 ```bibtex
 @article{EPGAN2025,
@@ -230,7 +230,7 @@ If you use this code, model, or datasets, please cite:
 
 ---
 
-# 📜 License
+# License
 
 This project is released under the **MIT License**, enabling free academic and research usage.
 

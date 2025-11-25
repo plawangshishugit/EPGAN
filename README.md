@@ -90,7 +90,7 @@ cd EPGAN
 pip install -r requirements.txt
 ```
 
-### 3. Download Datasets (Not Included)
+### 3. Download Datasets
 
 * EUVP (paired only): [https://irvlab.cs.umn.edu/resources/euvp-dataset](https://irvlab.cs.umn.edu/resources/euvp-dataset)
 * UIEB benchmark: [https://li-chongyi.github.io/proj_benchmark.html](https://li-chongyi.github.io/proj_benchmark.html)
@@ -109,7 +109,7 @@ python test.py --data_root datasets/EUVP/Paired --checkpoint generator_best.pth
 
 ---
 
-# 📂 **Dataset Folders **
+# 📂 **Dataset Folders**
 
 ### EUVP
 
@@ -157,12 +157,6 @@ results/test_results.png
 * **EUVP_Experiment.ipynb** — full training & experiments
 * **UIEB_Experiment.ipynb** — UIEB testing & visualization
 * Exported HTML notebooks available under:
-
-```
-notebooks/exports/
-```
-
-These notebooks ensure full reproducibility for reviewers.
 
 ---
 

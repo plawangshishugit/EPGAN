@@ -66,7 +66,7 @@ EPGAN/
 │
 ├── notebooks/
 │   ├── EUVP_Experiment.ipynb
-│   ├── UIEB_Experiment.ipynb
+│   └── UIEB_Experiment.ipynb
 │
 ├── requirements.txt
 ├── LICENSE

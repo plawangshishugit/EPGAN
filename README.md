@@ -1,31 +1,69 @@
-## How to Run
+
+# 📘 EP-GAN: Edge-Preserving Generative Adversarial Network for Underwater Image Restoration
+
+This repository contains the official implementation of **EP-GAN**, an edge-preserving generative adversarial network designed to restore underwater images by enhancing color, contrast, structural details, and edge fidelity.
+The model integrates global perceptual learning with local edge-aware guidance for high-quality underwater image restoration.
+
+The complete implementation and training code are publicly available under the DOI required for reproducibility.
+
+---
+
+## 🔗 **Code Availability**
+
+The full source code is archived at:
+
+👉 **[https://doi.org/10.5281/zenodo.17649194](https://doi.org/10.5281/zenodo.17649194)**
+
+---
+
+# 📁 Repository Structure
+
+```
+EPGAN/
+│
+├── model/                # Generator, Discriminator, Residual, Attention & Deformable Blocks
+├── database/             # Dataset loader (EUVPDataset, UIEB loader) and preprocessing tools
+├── functions/            # Utility functions: edge maps, metrics, helpers, visualizations
+├── objectives/           # Loss functions: edge loss, perceptual loss, content loss, GAN loss
+│
+├── train.py              # Training pipeline with hyperparameters & checkpoint saving
+├── test.py               # Testing, evaluation & image generation
+│
+├── README.md             # Documentation and usage instructions
+└── LICENSE               # MIT License (or preferred OSS license)
+```
+
+---
+
+# 🚀 How to Run
 
 ### **1. Install Dependencies**
-
-Your code requires the following libraries:
 
 ```
 pip install torch torchvision torchmetrics scikit-image tqdm pillow matplotlib numpy scikit-learn torchsummary seaborn pandas
 ```
 
-✅ CUDA is automatically detected in your script
-✅ No additional configuration required
+✔ GPU is automatically used if available
+✔ No additional configs required
 
 ---
 
-### **2. Dataset Setup (No Files Included)**
+## **2. Dataset Setup (No Files Included)**
 
-This repository **does not contain any dataset files**.
+This repository does **NOT** include dataset files.
+All datasets must be downloaded from official sources.
 
-Download datasets only from official sources:
+### **Official Dataset Links**
 
-* **EUVP (paired subset only):**
+* **EUVP (paired subset only)**
   [https://irvlab.cs.umn.edu/resources/euvp-dataset](https://irvlab.cs.umn.edu/resources/euvp-dataset)
 
-* **UIEB Benchmark (Raws and References only):**
+* **UIEB Benchmark (raws + references)**
   [https://li-chongyi.github.io/proj_benchmark.html](https://li-chongyi.github.io/proj_benchmark.html)
 
-#### Folder structure expected by the code:
+---
+
+## 📂 Folder Structure Required
 
 ```
 /EUVP/Paired/
@@ -38,53 +76,73 @@ Download datasets only from official sources:
    underwater_scenes/
       trainA/
       trainB/
+
+# UIEB should follow its original structure:
+# /UIEB/raw/
+# /UIEB/reference/
 ```
 
-✅ **Only `trainA` (distorted images) and `trainB` (reference images) are used in this project.**
-✅ No validation or test folders from the original dataset are used.
+### ✔ Important Notes
 
-The dataset is internally divided into an **80/20 split** for training and testing using:
-
-```python
-train_indices, test_indices = train_test_split(indices, test_size=0.2, random_state=42)
-```
-
-Update the dataset path in your code here:
-
-```python
-dataset = EUVPDataset(
-    r'C:\Users\plawa\anaconda3\envs\underwater_gan_new\EUVP\Paired',
-    transform=transform
-)
-```
+* Only **trainA** (distorted images) and **trainB** (reference images) are used.
+* For each dataset, an **80% training / 20% testing** split is performed **inside the code**.
+* Datasets were **not mixed**; each dataset was used **independently**.
 
 ---
 
-### **3. Run Training**
+# 🧠 Training Strategy (IMPORTANT)
 
-Your script already contains the full training loop:
+We designed the EP-GAN architecture and trained it **separately on two different datasets**:
+
+### ✔ **1. EUVP (paired) Training**
+
+* Only `trainA` and `trainB`
+* Internal **80/20 split** for training/testing
+* Trained from scratch
+
+### ✔ **2. UIEB Training**
+
+* Only raw–reference paired images
+* Internal **80/20 split** for training/testing
+* Trained independently from EUVP
+
+### ❗ No cross-dataset training
+
+### ❗ No dataset mixing
+
+### ❗ Each dataset has its own checkpoints & metrics
+
+This ensures unbiased, dataset-specific performance evaluation.
+
+---
+
+# 🧑‍💻 Training
+
+Run:
 
 ```
-python euvpcode.py
-```
-or 
-```
-python uiebcode.py
+python train.py
 ```
 
-It will automatically:
+This script will:
 
-✔ split the dataset into **80% training / 20% testing**
-✔ train the generator & discriminator
-✔ log metrics to `training_log.csv`
-✔ save best models as:
+✔ Load dataset
+✔ Split into **80% train / 20% test**
+✔ Train Generator & Discriminator
+✔ Save best checkpoints:
 
 ```
 generator_best.pth
 discriminator_best.pth
 ```
 
-✔ generate visual outputs like:
+✔ Log metrics to:
+
+```
+training_log.csv
+```
+
+✔ Generate visual outputs:
 
 ```
 test_results.png
@@ -94,50 +152,87 @@ col1_gan_loss_curve.png
 
 ---
 
-## ✅ Reproduction Steps
+# 🧪 Testing / Evaluation
 
-To reproduce reported results:
+Run:
 
-1. Download the EUVP paired dataset from the official link
+```
+python test.py
+```
 
-2. Place only the `trainA` and `trainB` folders under `/EUVP/Paired/`
+Outputs include:
 
-3. Install requirements
+* Restored images
+* PSNR, SSIM scores
+* Edge comparison visualizations
+* Side-by-side results
 
-4. Run the script
+---
 
-5. The code will automatically:
+# 🔁 Reproduction Steps
 
-   * compute PSNR & SSIM per epoch
-   * save the best checkpoint
-   * evaluate on the 20% test split
-   * generate publication-ready figures
+1. Install dependencies
+2. Download EUVP or UIEB from official sites
+3. Place files in the required folder structure
+4. Run:
 
-6. Final metrics will print at the end, for example:
+```
+python train.py
+```
+
+5. After training:
+
+```
+python test.py
+```
+
+6. Compare evaluation metrics:
 
 ```
 PSNR: XX.XX ± XX.XX
-SSIM: 0.XXXX ± 0.XXXX
+SSIM: 0.9XXX ± 0.0XXX
 ```
 
 ---
 
-## 🔗 Dataset Access (No Redistribution)
+# 📂 Dataset Access (Ethical Compliance)
 
-This project **does not redistribute** any dataset.
+This project **does not include or redistribute** any dataset.
 
-Users must download datasets directly from:
+Users must download datasets directly from their original authors:
 
-* EUVP Dataset — official source only
-* UIEB Benchmark — official source only
+* EUVP dataset (research use only)
+* UIEB dataset (academic use only; redistribution prohibited)
 
-Only officially downloaded **trainA and trainB** images were used, and solely for training/testing within an 80/20 split.
-
-All rights remain with the original dataset authors.
+All rights remain with their respective creators.
 
 ---
 
-The complete implementation of this model is publicly available at **[https://doi.org/10.5281/zenodo.17649194](https://doi.org/10.5281/zenodo.17649194)**.
+# 📝 Citation
+
+If you use this code, model, or datasets, please cite:
+
+**"EP-GAN: An Edge Preserving Generative Adversarial Network for Underwater Image Restoration"**
+*The Visual Computer (Springer)*, 2025.
+
+---
+
+# 🔖 BibTeX
+
+```bibtex
+@article{EPGAN2025,
+  title={EP-GAN: An Edge Preserving Generative Adversarial Network for Underwater Image Restoration},
+  journal={The Visual Computer},
+  year={2025},
+  authors={Plawang Shishu, Sruthi Nair, Mayur Parate, Tausif Diwan, Parul Sahare}
+}
+```
+
+---
+
+# 📜 License
+
+This project is released under the **MIT License**, enabling free academic and research usage.
 
 ---
 

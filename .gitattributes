@@ -1,0 +1,65 @@
+# ----------------------------------------
+# Handle Jupyter Notebooks Properly
+# ----------------------------------------
+*.ipynb linguist-language=Jupyter
+*.ipynb merge=jupyternotebook
+
+# Use "nbdime" for notebook merges (optional but recommended)
+# If using nbdime locally:
+#    git config --global merge.jupyternotebook.driver nbdime merge-driver
+
+# ----------------------------------------
+# Treat model checkpoints as binary
+# ----------------------------------------
+*.pth binary
+*.pt  binary
+*.ckpt binary
+
+# ----------------------------------------
+# Image & media files (binary)
+# ----------------------------------------
+*.png binary
+*.jpg binary
+*.jpeg binary
+*.bmp binary
+*.gif binary
+*.tiff binary
+
+# ----------------------------------------
+# Normalize line endings for text files
+# ----------------------------------------
+*.py     text eol=lf
+*.md     text eol=lf
+*.txt    text eol=lf
+*.csv    text eol=lf
+*.json   text eol=lf
+*.yml    text eol=lf
+*.yaml   text eol=lf
+*.html   text eol=lf
+*.css    text eol=lf
+*.js     text eol=lf
+
+# ----------------------------------------
+# Keep Linux-style endings for shell scripts
+# ----------------------------------------
+*.sh text eol=lf
+
+# ----------------------------------------
+# Windows batch files
+# ----------------------------------------
+*.bat text eol=crlf
+
+# ----------------------------------------
+# Ignore large datasets (do not track)
+# ----------------------------------------
+datasets/*  -diff -merge binary
+data/*      -diff -merge binary
+EUVP/*      -diff -merge binary
+UIEB/*      -diff -merge binary
+
+# ----------------------------------------
+# Prevent GitHub from counting generated files as source code
+# ----------------------------------------
+results/* linguist-vendored
+outputs/* linguist-vendored
+checkpoints/* linguist-vendored

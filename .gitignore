@@ -1,0 +1,86 @@
+# -------------------------
+# Python Cache / Compiled Files
+# -------------------------
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+
+# -------------------------
+# Jupyter Notebook Checkpoints
+# -------------------------
+.ipynb_checkpoints/
+notebooks/.ipynb_checkpoints/
+
+# -------------------------
+# Model Checkpoints
+# -------------------------
+*.pth
+*.ckpt
+*.pt
+
+# -------------------------
+# Logs & Outputs
+# -------------------------
+*.log
+*.csv
+*.txt
+results/
+outputs/
+runs/
+checkpoints/
+
+# -------------------------
+# Temporary Files
+# -------------------------
+*.tmp
+*.temp
+*.bak
+*.swp
+*.swm
+*.swx
+
+# -------------------------
+# Images & Generated Artifacts
+# -------------------------
+*.png
+*.jpg
+*.jpeg
+*.bmp
+*.tiff
+*.gif
+
+# Allow small images inside README/notebooks
+!notebooks/**/*.png
+!notebooks/**/*.jpg
+!docs/**/*.png
+!docs/**/*.jpg
+
+# -------------------------
+# Environment Files
+# -------------------------
+env/
+venv/
+.venv/
+*.env
+
+# -------------------------
+# System Files
+# -------------------------
+.DS_Store
+Thumbs.db
+
+# -------------------------
+# Dataset Folders (IMPORTANT)
+# DO NOT include large datasets in repository
+# -------------------------
+datasets/
+data/
+EUVP/
+UIEB/
+
+# -------------------------
+# IDE / Editor Folders
+# -------------------------
+.vscode/
+.idea/

@@ -67,7 +67,6 @@ EPGAN/
 ├── notebooks/
 │   ├── EUVP_Experiment.ipynb
 │   ├── UIEB_Experiment.ipynb
-│   └── exports/          # HTML/PDF exports (optional)
 │
 ├── requirements.txt
 ├── LICENSE

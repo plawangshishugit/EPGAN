@@ -109,7 +109,7 @@ python test.py --data_root datasets/EUVP/Paired --checkpoint generator_best.pth
 
 ---
 
-# 📂 **Dataset Folders (REQUIRED)**
+# 📂 **Dataset Folders **
 
 ### EUVP
 
